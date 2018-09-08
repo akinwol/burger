@@ -1,0 +1,60 @@
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-3">Hello, world!</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+                featured content or information.</p>
+            <hr class="my-2">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#!" role="button">Some action</a>
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
+        </form>
+
+    </div>
+
+</div>
+
+<button type="button" class="btn btn-primary">Submit</button>
+
+<div class="row">
+
+    <div class="col-6">
+        {{#each burger}} {{#unless devoured}}
+        <p>
+            {{burger_name}}
+            <button type="button" class="btn btn-primary" data-id="{{id}}" data-eat="{{devoured}}">Eat</button>
+            <button type="button" class="btn btn-primary" data-id="{{id}}" data-eat="{{devoured}}"> Delete </button>
+        </p>
+        {{/unless}} {{/each}}
+    </div>
+
+    <div class="col-6">
+        {{#each burger}} {{#if devoured}}
+        <p>
+            {{burger_name}}
+            <button type="button" class="btn btn-primary" data-id="{{id}}" data-eat="{{devoured}}"> Eat</button>
+            <button type="button" class="btn btn-primary" data-id="{{id}}" data-eat="{{devoured}}"> Delete </button>
+
+        </p>
+        {{/if}} {{/each}}
+    </div>
+
+</div>
+
+<div class="input-group">
+  <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+  <div class="input-group-append">
+    <button class="btn btn-success" type="button">Love it</button>
+  </div>
+</div>
