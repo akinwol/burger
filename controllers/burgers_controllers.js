@@ -6,17 +6,7 @@ router.get("/", function (req, res) {
     burgers.selectAll(function (data) {
         console.log("------LOGGED DATA-----")
         // console.log(data)
-        // data.forEach(function(element, index){
-        //     if(element.devoured === 0){
-               
-        //     }
-        //     else {
-        //         console.log(index)
-        //         console.log("--eaten-----")
-        //         console.log(element)
-        //     }
-           
-        // });
+     
         var burgerObject = {
             burger: data
         };
@@ -24,6 +14,44 @@ router.get("/", function (req, res) {
         res.render("index", burgerObject);
     });
 
+});
+
+router.post("/api/burger",function(req,res){
+    // console.log(req.body)
+    burgers.insert(["burger_name", "devoured"],[req.body.name, req.body.devour], function(result){
+        console.log(result)
+
+    })
+});
+
+router.put("/api/burger/:id", function(req,res){
+    var condition = "id = " + req.params.id;
+
+    // console.log("condition", condition);
+    // console.log(req.body)
+
+    burgers.update({
+        devoured: req.body.devour
+    }, condition, function(result){
+        if (result.changedRows == 0) {
+            // If no rows were changed, then the ID must not exist, so 404
+            return res.status(404).end();
+          } else {
+            res.status(200).end();
+          }
+    })
+});
+
+router.delete("/api/burger/:id", function(req,res){
+    var condition = "id = " + req.params.id;
+    burgers.delete(condition, function(result){
+        if (result.affectedRows == 0) {
+            // If no rows were changed, then the ID must not exist, so 404
+            return res.status(404).end();
+          } else {
+            res.status(200).end();
+          }
+    })
 });
 
 module.exports = router 
